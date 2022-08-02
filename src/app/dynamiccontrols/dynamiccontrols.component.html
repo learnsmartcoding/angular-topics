@@ -1,0 +1,90 @@
+<h2>Dynamically add controls to a form</h2>
+<br>
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-info" (click)="addItem()">Add new category</button>
+            </div>
+        </div>
+        <!-- now its time to integrate this form with our reactive form.
+we see nothing becuase this form arrary is empty now. let's populate the existing ones
+-->
+
+        <form class="form-vertical" [formGroup]="categoryForm" novalidate (ngSubmit)="onSubmit()">
+            <div formArrayName="items" *ngFor="let item of items.controls; let i=index;">
+                <div [formGroupName]="i">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Category Name</label>
+                                <input [class.has-error]="validateField(item)" formControlName="name"
+                                    placeholder="Category Name" maxlength="100" class="form-control">
+                                <span class="help-block" *ngIf="validateField(item)">Category name is required
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="isActive">Is Active</label>
+                                <select formControlName="isActive" class="form-control">
+                                    <option value="-1">Select an option</option>
+                                    <option value="1">Active</option>
+                                    <option value="2">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 padding-top-30">
+                            <div class="pull-left">
+                                <div title="delete {{getCategoryName(i)}}" class="cursor" (click)="removeItem(i)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-trash-fill cursor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                    </svg>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="pull-right" [title]="!isformValid()?'Form is incomplete to submit':'Submit form'">
+                <button 
+                [disabled]="!isformValid()"
+                class="btn btn-primary" type="submit">Save</button>
+                &nbsp;
+                <button class="btn btn-default" type="button">Cancel</button>
+            </div>
+        </form>
+
+        <hr>
+        <div>
+
+            <pre>
+                {{getFormData() | json}}
+            </pre>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+        <h3>Notes:</h3>
+        <ul>
+            <li>We use a Category model that reflects a API</li>
+            <li>API details<code>
+                curl -X GET "https://lsc-essential-products.azurewebsites.net/api/Category/All" -H "accept: text/plain"
+            </code></li>
+            <li>
+                Sample data
+                <pre>
+                  {{categories | json}}
+                </pre>
+            </li>
+            <li>You can watch my other validation video and add auto validation so that user cannot get data unless form is valid</li>
+        </ul>
+    </div>
+
+</div>
