@@ -1,0 +1,41 @@
+<h2>Understanding how to use <code>ngSwitch</code> in Angular</h2>
+<br>
+<div class="row">
+    <div class="col-md-4" *ngFor="let item of appointments">
+        <div class="card card-hight" style="width: 24rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{item.name}} </h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Appointments</h6> -->
+                <hr>
+                <p class="card-text card-p-hight">{{item.description}}</p>
+
+                <span class="badge bg-info text-dark">{{item.duration}} Hours</span>&nbsp;&nbsp;
+                <div [ngSwitch]="item.timeSlot">
+                    <span class="badge bg-secondary">{{item.timeSlot}} {{item.timeSlot > 12? 'PM': 'AM'}}</span>
+                    <span *ngSwitchCase="7" class="badge bg-success">Early Start</span>
+                    <span *ngSwitchCase="9" class="badge bg-light text-dark">Normal Start</span>
+                    <span *ngSwitchCase="13" class="badge  bg-warning text-dark">Late Start</span>
+                    <span *ngSwitchDefault class="badge bg-dark">Evening Slot</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Notes:</h3>
+        <p>The <code>[NgSwitch] </code> directive on a container specifies an expression to match against. The
+            expressions to match
+            are provided by ngSwitchCase directives on views within the container</p>
+        <ul>
+            <li>Every view that matches is rendered.
+            </li>
+            <li> If there are no matches, a view with the <code>ngSwitchDefault</code> directive is rendered.</li>
+            <li>Elements within the <code>[ngSwitch] </code>statement but outside of any
+                <code>NgSwitchCase or ngSwitchDefault</code> directive
+                are preserved at the location.</li>
+            <li><a target="_blank" href="https://angular.io/api/common/NgSwitch">More details about NgSwitch </a></li>
+        </ul>
+    </div>
+</div>

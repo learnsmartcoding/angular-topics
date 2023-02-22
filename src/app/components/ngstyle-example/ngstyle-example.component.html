@@ -1,0 +1,57 @@
+<h2>Understanding how to use <code>ngStyle</code> in Angular</h2>
+<br>
+<div class="row">
+    <div class="col-md-4" *ngFor="let item of appointments">
+        <div class="card card-hight" style="width: 24rem;">
+            <div class="card-body">
+                <h5 class="card-title" [ngStyle]="getStyle(item.timeSlot)">{{item.name}} </h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Appointments</h6> -->
+                <hr>
+                <p class="card-text card-p-hight">{{item.description}}</p>
+
+                <span class="badge bg-info text-dark">{{item.duration}} Hours</span>&nbsp;&nbsp;
+                <div [ngSwitch]="item.timeSlot">
+                    <span class="badge bg-secondary">{{item.timeSlot}} {{item.timeSlot > 12? 'PM': 'AM'}}</span>
+                    <span *ngSwitchCase="7" class="badge bg-success">Early Start</span>
+                    <span *ngSwitchCase="9" class="badge bg-light text-dark">Normal Start</span>
+                    <span *ngSwitchCase="13" class="badge  bg-warning text-dark">Late Start</span>
+                    <span *ngSwitchDefault class="badge bg-dark">Evening Slot</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Notes:</h3>
+        <p><code>[NgStyle] </code> directive.
+        </p>
+        <ul>
+            <li>An attribute directive that updates styles for the containing HTML element. Sets one or more style
+                properties, specified as colon-separated key-value pairs. The key is a style name, with an optional .
+                <b>unit</b> suffix (such as 'top.px', 'font-style.em'). The value is an expression to be evaluated. The
+                resulting non-null value, expressed in the given unit, is assigned to the given style property. If
+                the result of evaluation is null, the corresponding style is removed.
+            </li>
+            <li><a target="_blank" href="https://angular.io/api/common/NgStyle">More details about NgStyle </a></li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- 
+    [style.color]="expression"
+    [ngStyle]="{'color':expression,'font-weight':true} " 
+    [ngStyle]="getStyle(item.timeSlot)"
+    
+    getStyle(slot: number) {
+    if (slot < 12) {
+      return { color: 'green', 'font-style': 'italic' };
+    } else if (slot < 15) return { color: 'orange', 'font-weight': 'bold' };
+    else {
+      return {};
+    }
+  }
+    can use both class and ngStyle together
+-->

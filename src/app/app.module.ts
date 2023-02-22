@@ -7,11 +7,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HiddenExampleComponent } from './components/hidden-example/hidden-example.component';
+import { NgclassExampleComponent } from './components/ngclass-example/ngclass-example.component';
+import { NgstyleExampleComponent } from './components/ngstyle-example/ngstyle-example.component';
+import { NgswitchExampleComponent } from './components/ngswitch-example/ngswitch-example.component';
 
 
 @NgModule({
   declarations: [
-    routedComponents    
+    routedComponents,
+    HiddenExampleComponent,
+    NgclassExampleComponent,
+    NgstyleExampleComponent,
+    NgswitchExampleComponent    
   ],
   imports: [
     BrowserModule,

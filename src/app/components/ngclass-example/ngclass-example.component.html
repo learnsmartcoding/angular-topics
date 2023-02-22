@@ -1,0 +1,51 @@
+<h2>Understanding how to use <code>ngClass</code> in Angular</h2>
+<br>
+<div class="row">
+    <div class="col-md-4" *ngFor="let item of appointments">
+        <div class="card card-hight" style="width: 24rem;">
+            <div class="card-body">
+                <h5 class="card-title" [ngClass]="getClass(item.timeSlot)">{{item.name}} </h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Appointments</h6> -->
+                <hr>
+                <p class="card-text card-p-hight">{{item.description}}</p>
+
+                <span class="badge bg-info text-dark">{{item.duration}} Hours</span>&nbsp;&nbsp;
+                <div [ngSwitch]="item.timeSlot">
+                    <span class="badge bg-secondary">{{item.timeSlot}} {{item.timeSlot > 12? 'PM': 'AM'}}</span>
+                    <span *ngSwitchCase="7" class="badge bg-success">Early Start</span>
+                    <span *ngSwitchCase="9" class="badge bg-light text-dark">Normal Start</span>
+                    <span *ngSwitchCase="13" class="badge  bg-warning text-dark">Late Start</span>
+                    <span *ngSwitchDefault class="badge bg-dark">Evening Slot</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Notes:</h3>
+        <p><code>[NgClass] </code> directive. Adds and removes CSS classes on an HTML element.
+        </p>
+        <p>The CSS classes are updated as follows, depending on the type of the expression evaluation:</p>
+        <ul>
+            <li>string - the CSS classes listed in the string (space delimited) are added,</li>
+            <li>Array - the CSS classes declared as Array elements are added,</li>
+            <li>Object - keys are CSS classes that get added when the expression given in the value evaluates to a
+                truthy value, otherwise they are removed.</li>
+            <li><a target="_blank" href="https://angular.io/api/common/NgClass">More details about NgClass </a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- 
+    [class.class-name]="expression"
+    [ngClass]="{green:expression,bold:true} " 
+    [ngClass]="getClass(item.timeSlot)"
+    getClass(slot:number){
+        return {green:true, bold: true} or
+        return 'green bold' or
+        return  ['green', 'bold']
+    }
+    can use both class and ngclass together
+-->

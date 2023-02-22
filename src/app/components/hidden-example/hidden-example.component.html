@@ -1,0 +1,33 @@
+<h2>Understanding on how to use <code>hidden</code> attribute from html element</h2>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <label>Filter by Duration</label>
+        <select class="form-control" [(ngModel)]="selectedHour" (ngModelChange)="hourFilterChanged($event)">
+            <option value="-1">Select one</option>
+            <option value="1">One hour</option>
+            <option value="2">Two hour</option>
+        </select>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div *ngFor="let item of appointments">
+        <div class="card card-hight" style="width: 24rem;" [hidden]="+selectedHour===item.duration">
+            <div class="card-body">
+                <h5 class="card-title">{{item.name}} </h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Appointments</h6> -->
+                <hr>
+                <p class="card-text card-p-hight">{{item.description}}</p>
+
+                <span class="badge bg-primary">{{item.timeSlot}} {{item.timeSlot > 12? 'PM':
+                    'AM'}}</span>&nbsp;&nbsp;<span class="badge bg-info text-dark">{{item.duration}} Hours</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- {{+selectedHour===item.duration}} 
+
+[hidden]="+selectedHour===item.duration"
+-->
