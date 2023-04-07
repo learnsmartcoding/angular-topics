@@ -1,0 +1,19 @@
+<h2>Custom auto complete</h2>
+<br>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        
+        <app-auto-complete (optionSelected)="onOptionSelected($event)"></app-auto-complete>
+        <br>
+        <ng-container *ngIf="selectedOption" class="selected-option">
+            <i class="material-icons">done, you selected </i>
+            <span><b>{{selectedOption}}</b></span>
+          </ng-container>
+
+
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

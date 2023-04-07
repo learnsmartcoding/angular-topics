@@ -8,6 +8,7 @@ import { NgswitchExampleComponent } from './components/ngswitch-example/ngswitch
 import { DynamicControlsComponent } from './dynamiccontrols/dynamiccontrols.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { AutoCompleteExampleComponent } from './components/auto-complete-example/auto-complete-example.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'exploring-angular-template-syntax/hidden-attribute-usage', component:HiddenExampleComponent },
   { path: 'exploring-angular-template-syntax/ngSwitch-usage', component:NgswitchExampleComponent },
   { path: 'exploring-angular-template-syntax/ngClass-usage', component:NgclassExampleComponent },
-  { path: 'exploring-angular-template-syntax/ngStyle-usage', component:NgstyleExampleComponent }
+  { path: 'exploring-angular-template-syntax/ngStyle-usage', component:NgstyleExampleComponent },
+  { path: 'auto-complete/example', component:AutoCompleteExampleComponent }
 ];
 
 @NgModule({
