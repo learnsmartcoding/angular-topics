@@ -1,0 +1,6 @@
+ <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" class="form-control"
+    placeholder="Start typing country name. E.g. United..">
+<ul *ngIf="showResults">
+    <li *ngFor="let option of options" class="cursor" (click)="selectOption(option)">{{ option }}</li>
+</ul>
+ 

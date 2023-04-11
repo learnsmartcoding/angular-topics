@@ -11,6 +11,8 @@ import { HiddenExampleComponent } from './components/hidden-example/hidden-examp
 import { NgclassExampleComponent } from './components/ngclass-example/ngclass-example.component';
 import { NgstyleExampleComponent } from './components/ngstyle-example/ngstyle-example.component';
 import { NgswitchExampleComponent } from './components/ngswitch-example/ngswitch-example.component';
+import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
+import { AutoCompleteExampleComponent } from './components/auto-complete-example/auto-complete-example.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { NgswitchExampleComponent } from './components/ngswitch-example/ngswitch
     HiddenExampleComponent,
     NgclassExampleComponent,
     NgstyleExampleComponent,
-    NgswitchExampleComponent    
+    NgswitchExampleComponent,
+    AutoCompleteComponent,
+    AutoCompleteExampleComponent    
   ],
   imports: [
     BrowserModule,
